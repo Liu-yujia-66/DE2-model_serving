@@ -8,11 +8,14 @@ import keystoneclient.v3.client as ksclient
 from keystoneauth1 import loading
 from keystoneauth1 import session
 
-flavor = "ssc" 
-private_net = "Cloud_Network"
+# 选择你要使用的 flavor
+flavor = "ssc.medium"
+# 选择你要使用的 Cloud_Network
+private_net = "UPPMAX 2025/1-2 Internal IPv4 Network"
 floating_ip_pool_name = None
 floating_ip = None
-image_name = "<use_Ubuntu_20.04_image>"
+# image_name = "<use_Ubuntu_20.04_image>" 选择你要使用的image
+image_name = "Ubuntu 22.04 - 2024.01.15"
 
 identifier = random.randint(1000,9999)
 
@@ -51,7 +54,8 @@ else:
 secgroups = ['default']
 
 print ("Creating instance ... ")
-instance = nova.servers.create(name="prod_server_without_docker_"+str(identifier), image=image, key_name='sztoor', flavor=flavor,userdata=userdata, nics=nics,security_groups=secgroups)
+# 设置要生成的instance名称 + 选择要使用的密钥对Key_Pairs
+instance = nova.servers.create(name="LIU_server_without_docker_"+str(identifier), image=image, key_name='liu-yujia-66', flavor=flavor,userdata=userdata, nics=nics,security_groups=secgroups)
 
 # incase you want to login to the production server 
 #instance = nova.servers.create(name="prod_server_without_docker", image=image, flavor=flavor, key_name='access-key-name',userdata=userdata, nics=nics,security_groups=secgroups)
