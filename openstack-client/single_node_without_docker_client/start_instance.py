@@ -54,11 +54,10 @@ else:
 secgroups = ['default']
 
 print ("Creating instance ... ")
-# 设置要生成的instance名称 + 选择要使用的密钥对Key_Pairs
-instance = nova.servers.create(name="LIU_server_without_docker_"+str(identifier), image=image, key_name='liu-yujia-66', flavor=flavor,userdata=userdata, nics=nics,security_groups=secgroups)
 
-# incase you want to login to the production server 
-#instance = nova.servers.create(name="prod_server_without_docker", image=image, flavor=flavor, key_name='access-key-name',userdata=userdata, nics=nics,security_groups=secgroups)
+# 设置要生成的instance名称 + 选择要使用的密钥对Key_Pairs
+instance = nova.servers.create(name="LIU_server_without_docker_"+str(identifier), image=image, flavor=flavor, key_name='liu-yujia-66',userdata=userdata, nics=nics,security_groups=secgroups)
+
 inst_status = instance.status
 print ("waiting for 10 seconds.. ")
 time.sleep(10)
