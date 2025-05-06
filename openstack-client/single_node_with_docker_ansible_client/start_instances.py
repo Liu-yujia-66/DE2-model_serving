@@ -9,11 +9,20 @@ from keystoneauth1 import loading
 from keystoneauth1 import session
 
 
-flavor = "ssc" 
-private_net = "SNIC Network"
+# flavor = "ssc" 
+# private_net = "SNIC Network"
+# floating_ip_pool_name = None
+# floating_ip = None
+# image_name = "image-ID"
+
+# 选择你要使用的 flavor
+flavor = "ssc.medium"
+# 选择你要使用的 Cloud_Network
+private_net = "UPPMAX 2025/1-2 Internal IPv4 Network"
 floating_ip_pool_name = None
 floating_ip = None
-image_name = "image-ID"
+# image_name = "<use_Ubuntu_20.04_image>" 选择你要使用的image
+image_name = "Ubuntu 22.04 - 2024.01.15"
 
 identifier = random.randint(1000,9999)
 
@@ -58,8 +67,8 @@ else:
 secgroups = ['default']
 
 print ("Creating instances ... ")
-instance_prod = nova.servers.create(name="prod_server_with_docker_"+str(identifier), image=image, flavor=flavor, key_name='<KEY-NAME>',userdata=userdata_prod, nics=nics,security_groups=secgroups)
-instance_dev = nova.servers.create(name="dev_server_"+str(identifier), image=image, flavor=flavor, key_name='<KEY-NAME>',userdata=userdata_dev, nics=nics,security_groups=secgroups)
+instance_prod = nova.servers.create(name="LIUprod_server_with_docker_"+str(identifier), image=image, flavor=flavor, key_name='liu-yujia-66',userdata=userdata_prod, nics=nics,security_groups=secgroups)
+instance_dev = nova.servers.create(name="LIUdev_server_"+str(identifier), image=image, flavor=flavor, key_name='liu-yujia-66',userdata=userdata_dev, nics=nics,security_groups=secgroups)
 inst_status_prod = instance_prod.status
 inst_status_dev = instance_dev.status
 
